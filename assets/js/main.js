@@ -2,6 +2,8 @@ console.log('main js is here');
 let conatiner = document.getElementsByClassName('container')[0];
 let cover = document.getElementsByClassName('cover')[0];
 let catImg = document.getElementById('catImg');
+let like = document.getElementById('like');
+let dislike = document.getElementById('dislike');
 let mouseCurrentDownX=-1;
 let mouseCurrentUpX=-1;
 let catPics=[];
@@ -27,6 +29,17 @@ async function putNewCatImg(className){//???
         }, 500);
     }
 }
+
+
+
+like.addEventListener('click', () => {
+    putNewCatImg('removed-right');
+});
+
+dislike.addEventListener('click', () => {
+    putNewCatImg('removed-right');
+});
+
 
 cover.addEventListener('touchstart', function(e){
     //console.log('touchstart', e.touches[0].clientX);

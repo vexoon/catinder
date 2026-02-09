@@ -46,33 +46,125 @@ table {
 
 /* end reset css */
 
-h1{
-    text-align: center;
-    font-size: 50px;
+body {
+    background-image: url("/assets/imges/cat-theme.jpg");
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    max-height: 8%;
+    padding: 30px;
+    justify-content: space-between;
+   
+}
+
+#logo {
+    width: 12%;
+}
+
+.menu {
+    display: flex;
+    gap: 40px;
+    justify-content: start;
+}
+
+.menu a {
+    font-size: 30px;
+    text-decoration: none;
+    color: rgb(172, 3, 82);
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 500;
+}
+
+.menu a:hover {
+    color: white;
+    background-color:  rgb(172, 3, 82);
+}
+
+#premium {
+    color: white;
+    background-color:  rgb(190, 146, 80);
+}
+
+#premium:hover {
+    background-color: rgb(172, 3, 82);
+}
+
+.buttons {
+    display: flex;
+    margin: 20px;
+    justify-content: space-around;
+    width: 400px;
+}
+
+.buttons button {
+    display: flex;
+    align-items: center;
+}
+
+#like {
+    border: none;
+    border-radius: 100%;
+}
+
+#like img {
+    width: 70px;
+    height: 70px;
+}
+
+#dislike {
+    border: none;
+    border-radius: 100%;
+}
+
+#dislike img {
+    width: 70px;
+    height: 70px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    width: 100%;
+    min-height: 300px;
 }
 
 .container{
-    width: 100%;
-    min-height: 300px;
-    max-height: 500px;
-   
-      /* Initial state and transition settings */
+    display: flex;
+    justify-content: center;
+    /* Initial state and transition settings */
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
     /* other styling for the card appearance */
-    position: absolute;
-    text-align: center;
     
-}
-
-
-.container img{
     text-align: center;
-    max-height: 500px;
-    max-width: 100%;
-    border-radius: 15px;
+   
 }
 
 
+#catImg {
+    width: 400px;
+    height: 600px;
+    text-align: center;
+    object-fit: cover;
+    border-radius: 30px;
+    object-position: center;
+}
+
+body, html {
+    overflow-x: hidden; /* Sağ tarafa taşmaları gizler */
+    width: 100%;
+    position: relative;
+}
 
 /* Class added by JavaScript when swiped left */
 .removed-left {
@@ -94,9 +186,12 @@ h1{
 .cover{
     position: absolute;
     width: 100%;
+    max-width: 100%;
     height: 100%;
+    max-height: 600px;
     background-color: #ff000000;
     z-index: 10;
+   
 }
 
 .info{
@@ -111,3 +206,4 @@ h1{
     text-align: center;
     margin-top: 20px;
 }
+
