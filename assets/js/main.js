@@ -37,9 +37,16 @@ like.addEventListener('click', () => {
 });
 
 dislike.addEventListener('click', () => {
+    putNewCatImg('removed-left');
+});
+
+like.addEventListener('touch', () => {
     putNewCatImg('removed-right');
 });
 
+dislike.addEventListener('touch', () => {
+    putNewCatImg('removed-left');
+});
 
 cover.addEventListener('touchstart', function(e){
     //console.log('touchstart', e.touches[0].clientX);

@@ -160,11 +160,11 @@ header {
     object-position: center;
 }
 
-body, html {
-    overflow-x: hidden; /* Sağ tarafa taşmaları gizler */
+/* body, html {
+    overflow-x: hidden; 
     width: 100%;
     position: relative;
-}
+} */
 
 /* Class added by JavaScript when swiped left */
 .removed-left {
