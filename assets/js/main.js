@@ -1,50 +1,58 @@
-console.log('main js is here');
-let conatiner = document.getElementsByClassName('container')[0];
+let container = document.getElementsByClassName('container')[0];
 let cover = document.getElementsByClassName('cover')[0];
 let catImg = document.getElementById('catImg');
 let like = document.getElementById('like');
 let dislike = document.getElementById('dislike');
+
 let mouseCurrentDownX=-1;
 let mouseCurrentUpX=-1;
-let catPics=[];
-let likes = 0;
-let disLikes = 0;
+
 
 async function getNewCatImgUrl() {
     const response = await fetch("https://cataas.com/cat?json=true");
     const result = await response.json();
-    //console.log(result.url)
     return result.url;
 }
 
-async function putNewCatImg(className){//???
-    const catUrl = await getNewCatImgUrl();
-    catImg.src = catUrl;
-    addLink(catUrl);
-
-    if (className) {
-        conatiner.classList.add(className);
-        setTimeout(async function () {
-            conatiner.classList.remove(className);
-        }, 500);
+async function putNewCatImg(className){
+    // İlk yükleme
+    if (!className) {
+        catImg.src = await getNewCatImgUrl();
+        return;
     }
+
+    // Animasyonu başlat
+    catImg.classList.add(className);
+
+    setTimeout(async () => {
+
+        // Elementi resetlemek için DOM’dan çıkar
+        const newElement = catImg.cloneNode(true);
+
+        // Class'sız hali
+        newElement.className = "";
+        newElement.id = "catImg";
+
+        // Yeni resmi yükle
+        newElement.src = await getNewCatImgUrl();
+
+        // Eskisini sil
+        catImg.remove();
+
+        // Yeniyi ekle
+        container.appendChild(newElement);
+
+        // Global değişkeni güncelle
+        catImg = newElement;
+
+    }, 500);
 }
-
-
 
 like.addEventListener('click', () => {
     putNewCatImg('removed-right');
 });
 
 dislike.addEventListener('click', () => {
-    putNewCatImg('removed-left');
-});
-
-like.addEventListener('touch', () => {
-    putNewCatImg('removed-right');
-});
-
-dislike.addEventListener('touch', () => {
     putNewCatImg('removed-left');
 });
 
@@ -76,28 +84,9 @@ function action() {
 
     if (mouseCurrentUpX - mouseCurrentDownX > 0) {
         putNewCatImg('removed-right');
-        likes++;
     } else {
         putNewCatImg('removed-left');
-        disLikes++;
     }
-    updateInfo();
 }
-
-function addLink(catLink) {
-    catPics.push(catLink);
-    let catLinks = document.getElementById('catLinks');
-
-    let tmpLi = document.createElement('li');
-    tmpLi.innerText = catLink;
-    catLinks.appendChild(tmpLi);
-
-}
-
-function updateInfo(){
-    document.getElementById('likes').textContent = 'likes : '+ likes;
-    document.getElementById('dislikes').textContent = 'dislikes : '+ disLikes;
-}
-
 
 putNewCatImg();

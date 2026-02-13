@@ -106,13 +106,22 @@ header {
 }
 
 .buttons button {
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    overflow: hidden;
     display: flex;
+    justify-content: center;
     align-items: center;
+    transition: all 0.15s ease;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
 
-#like {
-    border: none;
-    border-radius: 100%;
+.buttons button:active {
+    transform: scale(0.9);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 #like img {
@@ -120,15 +129,11 @@ header {
     height: 70px;
 }
 
-#dislike {
-    border: none;
-    border-radius: 100%;
-}
-
 #dislike img {
     width: 70px;
     height: 70px;
 }
+
 
 .main {
     display: flex;
@@ -142,29 +147,21 @@ header {
 .container{
     display: flex;
     justify-content: center;
-    /* Initial state and transition settings */
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-    /* other styling for the card appearance */
-    
-    text-align: center;
-   
 }
 
 
 #catImg {
     width: 400px;
     height: 600px;
-    text-align: center;
     object-fit: cover;
     border-radius: 30px;
-    object-position: center;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
-/* body, html {
-    overflow-x: hidden; 
-    width: 100%;
+body, html {
+    overflow: hidden; 
     position: relative;
-} */
+}
 
 /* Class added by JavaScript when swiped left */
 .removed-left {
@@ -178,11 +175,6 @@ header {
   opacity: 0;
 }
 
-.drop{
-    transform: translateY(-100vh); /* Move right and rotate */
-    opacity: 0;
-}
-
 .cover{
     position: absolute;
     width: 100%;
@@ -191,19 +183,30 @@ header {
     max-height: 600px;
     background-color: #ff000000;
     z-index: 10;
-   
+   touch-action: none;
 }
 
-.info{
-    width: 100%;
-    text-align: center;
-    margin-top: 500px;
-    height: 100px;
+@media (max-width: 480px) {
+    .menu {
+        display: none;
+    }
+    header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #logo {
+       width: 50%;
+    }
+    .main {
+        padding: 0;
+    }
+    #catImg {
+        max-width: 400px;
+        max-height: 500px;
+    }
+    .cover {
+        max-width: 400px;
+        max-height: 500px;
+    }
 }
-
-.list{
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-}
-
